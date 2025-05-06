@@ -15,4 +15,14 @@
 
 
 -05/05/2025
--Manipuler  tenseal .
+-EXEMPLE1 de tenseal .
+
+-06/05/2025
+-exemple2 tenseal iffonctionnele pour ckms , les valeurs changent .
+-réunion avec Xavier,(Bilan ,trucs à faire:
+-Présentation de méthodes de cryptages, se focaliser sur homomorphic encryption 
+-Faire un use case avec 3couches:
+1er :  faisable 
+2eme :  vocaux
+3eme  : models d'ia 
+)
