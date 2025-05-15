@@ -26,4 +26,7 @@ Première couche : modèle médicale , manipulation des données médicaux simpl
 Deuxième couche : traitement de données vocales
 Troisième couche : intégration de modèles d’IA
 
-)
+-15/05/2025
+– Fin du tutoriel sur la manipulation du chiffrement complètement homomorphe appliqué à la régression logistique.
+– Début du use_Case1 : application à des données médicales simples.
+Mise en place d’une GUI avec Flask et HTML afin de mieux illustrer et manipuler le problème.
