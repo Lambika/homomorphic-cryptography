@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+<head>
+    <title>Serveur de données médicales chiffrées</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f9fc;
+            color: #333;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #2980b9;
+            margin-top: 30px;
+        }
+        ul {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        li {
+            margin: 15px 0;
+            padding: 10px;
+            border-left: 4px solid #3498db;
+            background-color: #f8f9fa;
+        }
+        strong {
+            color: #16a085;
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+        input[type="file"] {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .header img {
+            height: 50px;
+            margin-right: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="https://cdn-icons-png.flaticon.com/512/2039/2039170.png" alt="Medical Icon">
+        <h1>Serveur de données médicales sécurisées</h1>
+    </div>
+
+    <h2>Télécharger des fichiers</h2>
+    <ul>
+        <li>
+            <strong>Identifiants patients</strong> :
+            <a href="/download/enc_vector_id.txt">Télécharger enc_vector_id.txt</a>
+        </li>
+        <li>
+            <strong>Fréquence cardiaque minimale</strong> :
+            <a href="/download/enc_vector_HR_min.txt">Télécharger enc_vector_HR_min.txt</a>
+        </li>
+        <li>
+            <strong>Fréquence cardiaque maximale</strong> :
+            <a href="/download/enc_vector_HR_max.txt">Télécharger enc_vector_HR_max.txt</a>
+        </li>
+        <li>
+            <strong>Clé de déchiffrement publique</strong> :
+            <a href="/download/public_key.txt">Télécharger public_key.txt</a>
+        </li>
+    </ul>
+
+    <h2>Transmettre des données au serveur</h2>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <label for="file-upload" style="display: block; margin-bottom: 10px; font-weight: 500;">
+            Sélectionnez un ou plusieurs fichiers à envoyer :
+        </label>
+        <input type="file" id="file-upload" name="file" multiple>
+        <button type="submit">
+            <i class="upload-icon">↑</i> Envoyer les fichiers
+        </button>
+    </form>
+</body>
+</html>

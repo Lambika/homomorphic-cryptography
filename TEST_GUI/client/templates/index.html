@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+    <title>Client - Chiffrement</title>
+</head>
+<body>
+    <h2>Uploader un fichier Excel</h2>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".xlsx">
+        <button type="submit">Charger</button>
+    </form>
+
+    {% if data %}
+        <h3>Données :</h3>
+        {{ data|safe }}
+        <form action="/encrypt">
+            <button type="submit">Chiffrer et traiter</button>
+        </form>
+    {% endif %}
+</body>
+</html>
