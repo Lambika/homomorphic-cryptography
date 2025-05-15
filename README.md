@@ -18,11 +18,12 @@
 -EXEMPLE1 de tenseal .
 
 -06/05/2025
--exemple2 tenseal iffonctionnele pour ckms , les valeurs changent .
--réunion avec Xavier,(Bilan ,trucs à faire:
--Présentation de méthodes de cryptages, se focaliser sur homomorphic encryption 
--Faire un use case avec 3couches:
-1er :  faisable 
-2eme :  vocaux
-3eme  : models d'ia 
+-exemple2 tenseal iffonctionnele pour ckks , les valeurs changent .
+Réunion avec Xavier – Bilan et tâches à faire :
+Présenter différentes méthodes de cryptage, en se concentrant sur le chiffrement homomorphe.
+Construire un cas d’usage avec trois couches :
+Première couche : modèle médicale , manipulation des données médicaux simples
+Deuxième couche : traitement de données vocales
+Troisième couche : intégration de modèles d’IA
+
 )
