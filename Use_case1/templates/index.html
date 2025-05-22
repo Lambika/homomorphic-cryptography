@@ -107,15 +107,61 @@
         </li>
     </ul>
 
-    <h2>Transmettre des données au serveur</h2>
-    <form action="/upload" method="post" enctype="multipart/form-data">
-        <label for="file-upload" style="display: block; margin-bottom: 10px; font-weight: 500;">
-            Sélectionnez un ou plusieurs fichiers à envoyer :
+    <h2>Transmettre des données chiffrées au client</h2>
+    <form id="custom-upload-form">
+        <label for="file-upload" style="display: block; font-weight: 500;">
+            Fichier à envoyer :
         </label>
-        <input type="file" id="file-upload" name="file" multiple>
-        <button type="submit">
-            <i class="upload-icon">↑</i> Envoyer les fichiers
+        <input type="file" id="file-upload" required>
+    
+        <label for="custom-name" style="display: block; margin-top: 15px; font-weight: 500;">
+            Nom du fichier (optionnel) :
+        </label>
+        <input type="text" id="custom-name" placeholder="ex: donnees_patient_xyz">
+    
+        <button type="submit" style="margin-top: 15px;">
+            <i class="upload-icon">↑</i> Envoyer
         </button>
     </form>
+    
+    <script>
+    document.getElementById('custom-upload-form').addEventListener('submit', async function(event) {
+        event.preventDefault();
+    
+        const fileInput = document.getElementById('file-upload');
+        const customNameInput = document.getElementById('custom-name').value.trim();
+        
+        if (!fileInput.files.length) {
+            alert("Veuillez sélectionner un fichier.");
+            return;
+        }
+    
+        const originalFile = fileInput.files[0];
+        const extension = originalFile.name.split('.').pop();
+        const fileName = customNameInput ? (customNameInput + '.' + extension) : originalFile.name;
+    
+        const renamedFile = new File([originalFile], fileName, { type: originalFile.type });
+    
+        const formData = new FormData();
+        formData.append("file", renamedFile);
+    
+        try {
+            const response = await fetch('/upload', {
+                method: 'POST',
+                body: formData
+            });
+    
+            if (response.ok) {
+                alert("Fichier envoyé avec succès !");
+            } else {
+                alert("Erreur lors de l'envoi du fichier.");
+            }
+        } catch (err) {
+            alert("Erreur réseau : " + err.message);
+        }
+    });
+    </script>
+    
+    
 </body>
 </html>
