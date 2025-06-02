@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serveur de données médicales sécurisées | Hôpital Numérique</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2980b9;
+            --accent-color: #16a085;
+            --dark-color: #2c3e50;
+            --light-color: #f5f9fc;
+            --white: #ffffff;
+            --gray-light: #e9ecef;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: var(--light-color);
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            display: flex;
+            align-items: center;
+            background-color: var(--white);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+            border-left: 5px solid var(--primary-color);
+        }
+        
+        .header img {
+            height: 60px;
+            margin-right: 20px;
+        }
+        
+        .header-content h1 {
+            color: var(--dark-color);
+            margin: 0;
+            font-size: 28px;
+            font-weight: 700;
+        }
+        
+        .header-content p {
+            color: #666;
+            margin: 5px 0 0;
+            font-size: 16px;
+        }
+        
+        h2 {
+            color: var(--primary-color);
+            font-family: 'Roboto', sans-serif;
+            font-weight: 600;
+            margin-top: 40px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--gray-light);
+            font-size: 24px;
+        }
+        
+        .card {
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .file-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            margin: 10px 0;
+            background-color: var(--gray-light);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .file-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .file-info {
+            flex-grow: 1;
+        }
+        
+        .file-info strong {
+            color: var(--dark-color);
+            font-weight: 600;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .file-info span {
+            color: #666;
+            font-size: 14px;
+            display: block;
+        }
+        
+        .download-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+        
+        .download-btn:hover {
+            background-color: var(--secondary-color);
+            text-decoration: none;
+        }
+        
+        .download-btn i {
+            margin-right: 5px;
+        }
+        
+        .upload-form {
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            padding: 25px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+        
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .btn i {
+            margin-right: 8px;
+        }
+        
+        .alert {
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        
+        .alert-info {
+            background-color: #e7f5ff;
+            color: #1864ab;
+            border-left: 4px solid #1864ab;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .header img {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .file-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .download-btn {
+                margin-top: 10px;
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <img src="https://cdn-icons-png.flaticon.com/512/2039/2039170.png" alt="Medical Icon">
+            <div class="header-content">
+                <h1>Serveur de données médicales sécurisées</h1>
+                <p>Plateforme de transfert sécurisé de données patients chiffrées</p>
+            </div>
+        </header>
+
+
+
+        <section>
+            <h2><i class="fas fa-download"></i> Télécharger des fichiers</h2>
+            <div class="card">
+                <ul class="file-list">
+                    <li class="file-item">
+                        <div class="file-info">
+                            <strong>Identifiant du patient</strong>
+                            <span>Numéro d'identification chiffré du patient </span>
+                        </div>
+                        <a href="/download/id_encrypted.txt" class="download-btn">
+                            <i class="fas fa-file-download"></i> Télécharger
+                        </a>
+                    </li>
+                    <li class="file-item">
+                        <div class="file-info">
+                            <strong>Fièvre - Intensité</strong>
+                            <span>Données chiffrées des mesures de température</span>
+                        </div>
+                        <a href="/download/fever_encrypted.txt" class="download-btn">
+                            <i class="fas fa-file-download"></i> Télécharger
+                        </a>
+                    </li>
+                    <li class="file-item">
+                        <div class="file-info">
+                            <strong>Toux sèche - Intensité</strong>
+                            <span>Mesures chiffrées des symptômes de toux</span>
+                        </div>
+                        <a href="/download/dry_cough_encrypted.txt" class="download-btn">
+                            <i class="fas fa-file-download"></i> Télécharger
+                        </a>
+                    </li>
+                    <li class="file-item">
+                        <div class="file-info">
+                            <strong>Fatigue - Niveau</strong>
+                            <span>Évaluations chiffrées des niveaux de fatigue</span>
+                        </div>
+                        <a href="/download/tiredness_encrypted.txt" class="download-btn">
+                            <i class="fas fa-file-download"></i> Télécharger
+                        </a>
+                    </li>
+                    <li class="file-item">
+                        <div class="file-info">
+                            <strong>Douleurs musculaires</strong>
+                            <span>Données chiffrées des rapports de douleur</span>
+                        </div>
+                        <a href="/download/aches_and_pains_encrypted.txt" class="download-btn">
+                            <i class="fas fa-file-download"></i> Télécharger
+                        </a>
+                    </li>
+                    <li class="file-item">
+                        <div class="file-info">
+                            <strong>Mal de gorge - Intensité</strong>
+                            <span>Mesures chiffrées des symptômes</span>
+                        </div>
+                        <a href="/download/sore_throat_encrypted.txt" class="download-btn">
+                            <i class="fas fa-file-download"></i> Télécharger
+                        </a>
+                    </li>
+                    <li class="file-item">
+                        <div class="file-info">
+                            <strong>Diarrhée - Sévérité</strong>
+                            <span>Données chiffrées des symptômes gastro-intestinaux</span>
+                        </div>
+                        <a href="/download/diarrhoea_encrypted.txt" class="download-btn">
+                            <i class="fas fa-file-download"></i> Télécharger
+                        </a>
+                    </li>
+                    <li class="file-item">
+                        <div class="file-info">
+                            <strong>Conjonctivite - Intensité</strong>
+                            <span>Évaluations chiffrées des symptômes oculaires</span>
+                        </div>
+                        <a href="/download/conjunctivitis_encrypted.txt" class="download-btn">
+                            <i class="fas fa-file-download"></i> Télécharger
+                        </a>
+                    </li>
+                    <li class="file-item">
+                        <div class="file-info">
+                            <strong>Mal de tête - Intensité</strong>
+                            <span>Mesures chiffrées des céphalées</span>
+                        </div>
+                        <a href="/download/headache_encrypted.txt" class="download-btn">
+                            <i class="fas fa-file-download"></i> Télécharger
+                        </a>
+                    </li>
+                    <li class="file-item">
+                        <div class="file-info">
+                            <strong>Perte du goût</strong>
+                            <span>Données chiffrées des troubles sensoriels</span>
+                        </div>
+                        <a href="/download/loss_of_taste_encrypted.txt" class="download-btn">
+                            <i class="fas fa-file-download"></i> Télécharger
+                        </a>
+                    </li>
+                    <li class="file-item">
+                        <div class="file-info">
+                            <strong>Difficulté à respirer</strong>
+                            <span>Mesures chiffrées des fonctions respiratoires</span>
+                        </div>
+                        <a href="/download/difficulty_breathing_encrypted.txt" class="download-btn">
+                            <i class="fas fa-file-download"></i> Télécharger
+                        </a>
+                    </li>
+                    <li class="file-item">
+                        <div class="file-info">
+                            <strong>Douleur thoracique</strong>
+                            <span>Données chiffrées des symptômes thoraciques</span>
+                        </div>
+                        <a href="/download/chest_pain_encrypted.txt" class="download-btn">
+                            <i class="fas fa-file-download"></i> Télécharger
+                        </a>
+                    </li>
+                    <li class="file-item">
+                        <div class="file-info">
+                            <strong>Éruptions cutanées</strong>
+                            <span>Rapports chiffrés des manifestations cutanées</span>
+                        </div>
+                        <a href="/download/rash_on_skin_encrypted.txt" class="download-btn">
+                            <i class="fas fa-file-download"></i> Télécharger
+                        </a>
+                    </li>
+                    <li class="file-item">
+                        <div class="file-info">
+                            <strong>Résultat test COVID-19</strong>
+                            <span>Résultats chiffrés des tests diagnostiques</span>
+                        </div>
+                        <a href="/download/SARS_Cov_2_exam_result_encrypted.txt" class="download-btn">
+                            <i class="fas fa-file-download"></i> Télécharger
+                        </a>
+                    </li>
+                    <li class="file-item">
+                        <div class="file-info">
+                            <strong>Clé publique</strong>
+                            <span>Clé publique pour manipuler les données</span>
+                        </div>
+                        <a href="/download/public_key.txt" class="download-btn">
+                            <i class="fas fa-key"></i> Télécharger
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2><i class="fas fa-upload"></i> Transmettre des données chiffrées</h2>
+            <div class="card upload-form">
+                <form id="custom-upload-form">
+                    <div class="form-group">
+                        <label for="file-upload">
+                            <i class="fas fa-file-upload"></i> Fichier à envoyer :
+                        </label>
+                        <input type="file" id="file-upload" class="form-control" required>
+                    </div>
+                
+                    <div class="form-group">
+                        <label for="custom-name">
+                            <i class="fas fa-tag"></i> Nom du fichier (optionnel) :
+                        </label>
+                        <input type="text" id="custom-name" class="form-control" placeholder="ex: donnees_patient_xyz">
+                    </div>
+                
+                    <button type="submit" class="btn">
+                        <i class="fas fa-paper-plane"></i> Envoyer
+                    </button>
+                </form>
+            </div>
+        </section>
+    </div>
+    
+    <script>
+    document.getElementById('custom-upload-form').addEventListener('submit', async function(event) {
+        event.preventDefault();
+    
+        const fileInput = document.getElementById('file-upload');
+        const customNameInput = document.getElementById('custom-name').value.trim();
+        
+        if (!fileInput.files.length) {
+            alert("Veuillez sélectionner un fichier.");
+            return;
+        }
+    
+        const originalFile = fileInput.files[0];
+        const extension = originalFile.name.split('.').pop();
+        const fileName = customNameInput ? (customNameInput + '.' + extension) : originalFile.name;
+    
+        const renamedFile = new File([originalFile], fileName, { type: originalFile.type });
+    
+        const formData = new FormData();
+        formData.append("file", renamedFile);
+    
+        try {
+            const response = await fetch('/upload', {
+                method: 'POST',
+                body: formData
+            });
+    
+            if (response.ok) {
+                alert("Fichier envoyé avec succès !");
+            } else {
+                alert("Erreur lors de l'envoi du fichier.");
+            }
+        } catch (err) {
+            alert("Erreur réseau : " + err.message);
+        }
+    });
+    </script>
+</body>
+</html>
