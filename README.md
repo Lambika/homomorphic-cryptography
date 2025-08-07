@@ -4,7 +4,7 @@ A comprehensive exploration of Fully Homomorphic Encryption (FHE) applied to sen
 
 ---
 
-## 🎯 Project Overview
+##  Project Overview
 
 This project demonstrates practical applications of homomorphic encryption in healthcare, ensuring data privacy by enabling computations directly on encrypted data without decryption. Three distinct use cases illustrate the potential of FHE in real-world scenarios.
 
@@ -12,15 +12,15 @@ This project demonstrates practical applications of homomorphic encryption in he
 
 ## Key Features
 
-- ✅ Privacy-preserving medical data analysis  
-- ✅ Audio processing on encrypted signals  
-- ✅ Federated learning with homomorphic encryption  
-- ✅ Client-server architecture with Flask microservices  
-- ✅ GDPR-compliant data handling  
+-  Privacy-preserving medical data analysis  
+-  Audio processing on encrypted signals  
+-  Federated learning with homomorphic encryption  
+-  Client-server architecture with Flask microservices  
+-  GDPR-compliant data handling  
 
 ---
 
-## 🏗️ Architecture
+##  Architecture
 
 - **Client:** Encrypts data locally and decrypts results  
 - **Server:** Performs computations on encrypted data without access to plaintext  
@@ -28,7 +28,7 @@ This project demonstrates practical applications of homomorphic encryption in he
 
 ---
 
-## 📊 Use Cases
+##  Use Cases
 
 ### 1. Medical Database Pseudonymization  
 - **Objective:** Analyze medical records while preserving patient privacy  
@@ -53,7 +53,7 @@ This project demonstrates practical applications of homomorphic encryption in he
 
 ---
 
-## 🛠️ Technologies Used
+##  Technologies Used
 
 - **Primary Language:** Python 3.8+  
 - **FHE Library:** TenSEAL (Microsoft SEAL wrapper)  
@@ -65,7 +65,7 @@ This project demonstrates practical applications of homomorphic encryption in he
 
 ---
 
-## 🚀 Installation
+##  Installation
 
 ### Prerequisites
 
