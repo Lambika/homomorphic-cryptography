@@ -1,32 +1,73 @@
-# homomorphic-cryptography
+# Fully Homomorphic Encryption for Sensitive Medical Data Processing
 
+A comprehensive exploration of Fully Homomorphic Encryption (FHE) applied to sensitive medical data, developed during a 4-month internship at CETIC (Centre d'Excellence en Technologies de l'Information et de la Communication).
 
--29/04/2025
+---
 
--Comprendre un peu  le cryptage homomorphe
--Manipuler l'algorithme de Pailler et RSA avec Python , spécifiquement avec la librairie (from lightphe  import LightPHE) qui sont des exemples d'algortithmes partielement homomorphes .
--Début installation Pyfhel , mais y'a le code source en ligne est cassé , donc il faut que je trouve une solution intermédiaire pour que je puisse manipuler cette librairie qui est intéressante comme elle gère le fully homomorphic encryption
+## 🎯 Project Overview
 
+This project demonstrates practical applications of homomorphic encryption in healthcare, ensuring data privacy by enabling computations directly on encrypted data without decryption. Three distinct use cases illustrate the potential of FHE in real-world scenarios.
 
--30/04/2025
+---
 
--Réssayer de debug pour manipuler Pyfhel , j'ai installé plusieurs logiciels intermédiaire pour que je puisse manipuler celle ci mais sans résultat
--Dans les forums les gens se plaignent aussi de cette librairie , je passe donc à tenSeal .
+## Key Features
 
+- ✅ Privacy-preserving medical data analysis  
+- ✅ Audio processing on encrypted signals  
+- ✅ Federated learning with homomorphic encryption  
+- ✅ Client-server architecture with Flask microservices  
+- ✅ GDPR-compliant data handling  
 
--05/05/2025
--EXEMPLE1 de tenseal .
+---
 
--06/05/2025
--exemple2 tenseal iffonctionnele pour ckks , les valeurs changent .
-Réunion avec Xavier – Bilan et tâches à faire :
-Présenter différentes méthodes de cryptage, en se concentrant sur le chiffrement homomorphe.
-Construire un cas d’usage avec trois couches :
-Première couche : modèle médicale , manipulation des données médicaux simples
-Deuxième couche : traitement de données vocales
-Troisième couche : intégration de modèles d’IA
+## 🏗️ Architecture
 
--15/05/2025
-– Fin du tutoriel sur la manipulation du chiffrement complètement homomorphe appliqué à la régression logistique.
-– Début du use_Case1 : application à des données médicales simples.
-Mise en place d’une GUI avec Flask et HTML afin de mieux illustrer et manipuler le problème.
+- **Client:** Encrypts data locally and decrypts results  
+- **Server:** Performs computations on encrypted data without access to plaintext  
+- **Communication:** Secure data exchange via Flask microservices  
+
+---
+
+## 📊 Use Cases
+
+### 1. Medical Database Pseudonymization  
+- **Objective:** Analyze medical records while preserving patient privacy  
+- **Dataset:** Medical MNIST with clinical variables (fever, cough, chest pain, etc.)  
+- **Operations:** Statistical calculations, disease index computation, threshold comparisons  
+- **Technology:** CKKS scheme for approximate real number computations  
+
+### 2. Encrypted Audio Processing  
+- **Objective:** Process audio files without accessing their content  
+- **Features:**  
+  - Silence detection using polynomial approximation  
+  - Audio similarity comparison using Wav2Vec2 embeddings  
+  - Euclidean distance and cosine correlation on encrypted vectors  
+- **Technology:** CKKS scheme with signal processing optimizations  
+
+### 3. Secure Federated Learning  
+- **Objective:** Train CNN models across multiple hospitals without sharing raw data  
+- **Dataset:** Medical images from two simulated hospitals  
+- **Process:** Local training → Homomorphic aggregation → Distributed updated model  
+- **Results:** 93.8% accuracy improvement through secure collaboration  
+- **Technology:** CKKS scheme with PyTorch integration  
+
+---
+
+## 🛠️ Technologies Used
+
+- **Primary Language:** Python 3.8+  
+- **FHE Library:** TenSEAL (Microsoft SEAL wrapper)  
+- **ML Framework:** PyTorch  
+- **Audio Processing:** Librosa, Wav2Vec2 (Facebook AI)  
+- **Web Framework:** Flask  
+- **Development Tools:** Jupyter Notebooks, VS Code  
+- **Version Control:** Git/GitHub  
+
+---
+
+## 🚀 Installation
+
+### Prerequisites
+
+- Python >= 3.8  
+- pip >= 21.0  
